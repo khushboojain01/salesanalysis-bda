@@ -103,14 +103,6 @@ If you wish to contribute to the project, follow these steps:
 
 ---
 
-## **Future Enhancements**
-
-- **Advanced Predictive Analytics**: Integrating forecasting models to predict future sales trends.
-- **Machine Learning**: Apply clustering algorithms to better segment customer data.
-- **Custom Dashboards**: Create role-specific dashboards for different stakeholders (e.g., operations team vs. sales team).
-
----
-
 ## **License**
 
 This project is licensed under the MIT License.
