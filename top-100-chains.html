@@ -54,13 +54,25 @@
         .iframe-container {
             flex: 1;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
         iframe {
             width: 100%;
-            height: calc(100vh - 140px);
+            height: calc(100vh - 280px);
             border: none;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .description {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.4em;
+            overflow-y: auto;
+            max-height: 200px;
         }
         footer {
             background-color: #1e1e1e;
@@ -77,7 +89,7 @@
     </header>
     <div class="content">
         <div class="sidebar">
-            <button class="button" onclick="window.location.href='index.html'">Back to Selection</button>
+            <button class="button" onclick="window.location.href='index.html'">Back to Dashboard</button>
             <button class="button" onclick="loadIframe('table')">Data Overview & Performance Metrics</button>
             <button class="button" onclick="loadIframe('bar')">Category Breakdown</button>
             <button class="button" onclick="loadIframe('pie')">Proportional Insights</button>
@@ -87,10 +99,11 @@
         </div>
         <div class="iframe-container">
             <iframe id="reportFrame" src="" allowfullscreen></iframe>
+            <div id="description" class="description"></div>
         </div>
     </div>
     <footer>
-        &copy; 2024 Balaji Operations Dashboard
+        &copy; 2024 Top 100 Chains Dashboard
     </footer>
 
     <script>
@@ -103,9 +116,72 @@
                 'pivot': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/p_6g8rs5sfld',
                 'overall': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/fzoCE'
             };
+
+            let descriptions = {
+                'table': `
+                    <h2>Data Overview & Performance Metrics</h2>
+                    <p>This section provides key insights into the top-performing restaurant chains:</p>
+                    <ul>
+                        <li><strong>Highest U.S. Sales:</strong> McDonald's leads with $40.5 billion in 2020</li>
+                        <li><strong>Second Highest Sales:</strong> Starbucks, followed by Chick-fil-A</li>
+                    </ul>
+                    <p>These metrics showcase the dominance of certain chains in the U.S. market.</p>
+                `,
+                'bar': `
+                    <h2>Category Breakdown</h2>
+                    <p>This view breaks down the chains by number of units:</p>
+                    <ul>
+                        <li><strong>Largest Number of U.S. Units:</strong> Subway leads with 22,005 units</li>
+                        <li><strong>McDonald's Units:</strong> 13,682 units</li>
+                    </ul>
+                    <p>This breakdown helps understand the physical presence of these chains across the U.S.</p>
+                `,
+                'pie': `
+                    <h2>Proportional Insights</h2>
+                    <p>This section provides insights into menu categories and their market share:</p>
+                    <ul>
+                        <li><strong>Dominant Menu Category:</strong> Burgers, led by McDonald's and Burger King</li>
+                        <li><strong>Coffee/Café Category Leaders:</strong> Starbucks and Dunkin'</li>
+                    </ul>
+                    <p>These insights help in understanding the market share of different food categories.</p>
+                `,
+                'scatter': `
+                    <h2>Correlation Analysis</h2>
+                    <p>This analysis reveals year-over-year performance changes:</p>
+                    <ul>
+                        <li><strong>Highest YoY Growth:</strong> McDonald's with a 4.7% increase</li>
+                        <li><strong>Largest Decline:</strong> Starbucks with a 13% decline in 2020</li>
+                    </ul>
+                    <p>This data helps in understanding the impact of external factors on different chains.</p>
+                `,
+                'pivot': `
+                    <h2>Detailed Breakdown</h2>
+                    <p>This section offers a detailed view of dining segments:</p>
+                    <ul>
+                        <li><strong>Primary Dining Segments:</strong> Quick Service, Fast Casual, and Casual Dining</li>
+                        <li><strong>Growth Potential:</strong> Fast Casual segment, represented by chains like Chipotle</li>
+                    </ul>
+                    <p>This breakdown helps in understanding the structure of the restaurant industry.</p>
+                `,
+                'overall': `
+                    <h2>Overall Analysis</h2>
+                    <p>This comprehensive analysis provides:</p>
+                    <ul>
+                        <li><strong>Top 3 Chains Sales Volume:</strong> Exceeds $60 billion (McDonald's, Starbucks, Chick-fil-A)</li>
+                        <li><strong>Year-over-Year Performance:</strong> Varied, with McDonald's growing and Starbucks declining</li>
+                    </ul>
+                    <p>This overview helps in understanding the overall market dynamics and performance trends.</p>
+                `
+            };
+
             document.getElementById('reportFrame').src = reportUrls[view];
+            document.getElementById('description').innerHTML = descriptions[view];
         }
+
+        // Load default view on page load
+        window.onload = function() {
+            loadIframe('table');
+        };
     </script>
 </body>
 </html>
-
