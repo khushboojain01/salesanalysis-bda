@@ -3,20 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 100 Chains Sales - Data Visualization</title>
+    <title>Top 100 Chains Visualization</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        iframe { width: 100%; height: 600px; border: none; }
-        button { padding: 10px 20px; margin-top: 20px; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e1e1e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .button {
+            background-color: #FFCA28;
+            color: #121212;
+            padding: 12px 24px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        .button:hover {
+            background-color: #FFD54F;
+        }
+        .iframe-container {
+            flex: 1;
+            padding: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 140px);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        footer {
+            background-color: #1e1e1e;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-    <h1>Top 100 Chains Sales Data Visualization</h1>
-    
-    <!-- Embed the Top 100 Chains Sales page from Looker Studio -->
-    <iframe src="https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/fzoCE" allowfullscreen></iframe> <!-- Replace abcCE with the correct identifier for the top 100 chains sales page -->
-    
-    <br>
-    <button onclick="window.location.href='index.html'">Back to Selection</button>
+    <header>
+        <h1>Top 100 Chains Visualization</h1>
+    </header>
+    <div class="content">
+        <div class="sidebar">
+            <button class="button" onclick="window.location.href='index.html'">Back to Selection</button>
+            <button class="button" onclick="loadIframe('table')">Data Overview & Performance Metrics</button>
+            <button class="button" onclick="loadIframe('bar')">Category Breakdown</button>
+            <button class="button" onclick="loadIframe('pie')">Proportional Insights</button>
+            <button class="button" onclick="loadIframe('scatter')">Correlation Analysis</button>
+            <button class="button" onclick="loadIframe('pivot')">Detailed Breakdown</button>
+            <button class="button" onclick="loadIframe('overall')">Overall Analysis</button>
+        </div>
+        <div class="iframe-container">
+            <iframe id="reportFrame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Balaji Operations Dashboard
+    </footer>
+
+    <script>
+        function loadIframe(view) {
+            let reportUrls = {
+                'table': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/p_8sgv6klcld',
+                'bar': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/p_iq7v8klcld',
+                'pie': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/p_3vbvc0sfld',
+                'scatter': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/p_kkmrr5sfld',
+                'pivot': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/p_6g8rs5sfld',
+                'overall': 'https://lookerstudio.google.com/embed/reporting/5e7eb935-faab-465f-899a-a308048f25ed/page/fzoCE'
+            };
+            document.getElementById('reportFrame').src = reportUrls[view];
+        }
+    </script>
 </body>
 </html>
+
