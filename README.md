@@ -2,7 +2,7 @@
 
 ---
 
-# **Balaji Sales and Operations Visualization Project**
+# **Data Visualization Project**
 
 ## **Overview**
 
